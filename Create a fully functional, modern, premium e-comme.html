@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apexion Clothing | Premium Streetwear - Wear Your Identity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: 47 92% 53%;
+            --background: 0 0% 4%;
+            --card: 0 0% 8%;
+            --molten-opacity: 0.08;
+            --glass-blur: 12px;
+            --forge-grain: 0.04;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: hsl(var(--background));
+            color: #ffffff;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/feFilter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            background-blend-mode: overlay;
+        }
+
+        h1, h2, h3, .bebas {
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 0.05em;
+        }
+
+        .section-headline {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .hero-headline {
+            font-size: clamp(3rem, 10vw, 5.25rem);
+            line-height: 1.08;
+            font-weight: 700;
+        }
+
+        .apex-molten-glow {
+            background: linear-gradient(135deg, hsla(0,0%,100%,0.05) 0%, hsla(0,0%,100%,0) 100%);
+            backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid hsla(0,0%,100%,0.08);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .apex-molten-glow:hover {
+            border-color: hsl(var(--primary) / 0.5);
+            box-shadow: inset 0 0 20px hsla(47, 92%, 53%, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .cta-button {
+            background: hsl(var(--primary));
+            color: hsl(var(--background));
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 0.1em;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 0 hsl(47 92% 35%);
+            transition: all 300ms cubic-bezier(0.25, 1, 0.5, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cta-button:hover {
+            background: #ffcc33;
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 hsl(47 92% 35%);
+        }
+
+        .cta-button:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        /* Motion System */
+        .animate-enter {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .animate-enter.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .word-reveal-parent {
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: bottom;
+            padding-bottom: 0.15em;
+        }
+
+        .animate-word-enter {
+            display: inline-block;
+            transform: translateY(110%);
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .is-visible .animate-word-enter {
+            transform: translateY(0);
+        }
+
+        .reveal-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .reveal-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: hsl(var(--primary));
+            z-index: 10;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .reveal-container.is-visible .reveal-mask {
+            transform: translateX(101%);
+        }
+
+        .reveal-container img {
+            transform: scale(1.15);
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal-container.is-visible img {
+            transform: scale(1);
+        }
+
+        .gold-text { color: hsl(var(--primary)); }
+        .bg-obsidian { background-color: hsl(var(--card)); }
+
+        #cart-drawer {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        #cart-drawer.open {
+            transform: translateX(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #f5c518; }
+    </style>
+<script src="https://felo.ai/js/iframe.js?v=1785221918157"></script>
+ <style>
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: #bfc5ce transparent !important;
+}
+*::-webkit-scrollbar {
+  width: 6px !important;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #bfc5ce !important;
+  border-radius: 9999px !important;
+}
+*::-webkit-scrollbar-track {
+  background-color: transparent !important;
+  border-radius: 9999px !important;
+}
+</style></head>
+<body class="antialiased">
+
+    <!-- Constraint Audit Summary -->
+    <!-- Hero: HARD LAYOUT CONSTRAINT -> Cinematic verticality, tagline split, gold on 'Identity'. -->
+    <!-- Content Section: HARD LAYOUT CONSTRAINT -> 4-column product grid, obsidian vitrine cards. -->
+    <!-- CTA Section: HARD LAYOUT CONSTRAINT -> Full-width image, heavy vignette, centered button. -->
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300 px-6 py-4" id="navbar">
+        <div class="max-w-[1280px] mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl bebas gold-text tracking-widest" onclick="navigateTo('home')">APEXION</a>
+            <div class="hidden md:flex gap-10 items-center">
+                <a href="#" class="bebas text-lg hover:text-[#f5c518] transition-colors" onclick="navigateTo('home')">Home</a>
+                <a href="#" class="bebas text-lg hover:text-[#f5c518] transition-colors" onclick="navigateTo('shop')">Shop</a>
+                <a href="#" class="bebas text-lg hover:text-[#f5c518] transition-colors" onclick="navigateTo('about')">About</a>
+                <a href="#" class="bebas text-lg hover:text-[#f5c518] transition-colors" onclick="navigateTo('contact')">Contact</a>
+                <button onclick="toggleCart()" class="relative">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-[#f5c518] text-[#0a0a0a] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Content Container -->
+    <main id="app-root">
+        <!-- Home Page (Default) -->
+        <div id="page-home" class="page-content">
+            <!-- Hero Section -->
+            <section class="relative h-screen flex flex-col items-center justify-center text-center px-6 bg-black overflow-hidden">
+                <div class="absolute inset-0 bg-black/60 z-10"></div>
+                <div class="absolute inset-0 z-0 overflow-hidden" data-parallax="0.3">
+                    <img src="https://file.felo.ai/images/s/4oytGgPfTO.webp" class="w-full h-full object-cover" alt="Apexion Hero">
+                </div>
+                
+                <div class="relative z-20 max-w-4xl">
+                    <h1 class="hero-headline mb-6 hero-text-animate">
+                        <span class="word-reveal-parent"><span class="animate-word-enter" style="transition-delay: 0.1s">WEAR</span></span>
+                        <span class="word-reveal-parent"><span class="animate-word-enter" style="transition-delay: 0.2s">YOUR</span></span>
+                        <br>
+                        <span class="word-reveal-parent gold-text"><span class="animate-word-enter" style="transition-delay: 0.3s">IDENTITY</span></span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-10 text-white/80 max-w-2xl mx-auto animate-enter delay-400">
+                        Premium streetwear forged for the ones who refuse to drift. High-quality essentials powered by Printify.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center animate-enter delay-500">
+                        <button onclick="navigateTo('shop')" class="cta-button">SHOP COLLECTION</button>
+                        <button onclick="navigateTo('about')" class="bebas text-xl border-b border-white hover:border-[#f5c518] hover:text-[#f5c518] transition-all">OUR ETHOS</button>
+                    </div>
+                </div>
+                
+                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-8 text-xs bebas tracking-[0.2em] text-white/40 z-20">
+                    <span>PREMIUM QUALITY</span>
+                    <span>GLOBAL SHIPPING</span>
+                    <span>SECURE CHECKOUT</span>
+                </div>
+            </section>
+
+            <!-- Featured Collections (Experience Archetype: The Gallery Walk) -->
+            <section class="py-24 px-6 bg-[#0a0a0a]">
+                <div class="max-w-[1280px] mx-auto">
+                    <h2 class="section-headline mb-16 text-center animate-enter">FEATURED COLLECTIONS</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- T-Shirts -->
+                        <div class="group relative h-[600px] overflow-hidden animate-enter delay-100">
+                            <div class="reveal-container h-full">
+                                <div class="reveal-mask"></div>
+                                <img src="https://file.felo.ai/images/s/4DPfm69bXm.png" class="w-full h-full object-cover" alt="T-Shirts">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="absolute bottom-8 left-8">
+                                <h3 class="text-4xl bebas mb-2">T-SHIRTS</h3>
+                                <p class="text-white/60 mb-6 max-w-[200px]">Heavyweight cotton with bold, metallic gold accents.</p>
+                                <button onclick="navigateTo('shop')" class="bebas text-lg gold-text hover:translate-x-2 transition-transform inline-flex items-center gap-2">VIEW RANGE <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></button>
+                            </div>
+                        </div>
+                        <!-- Hoodies -->
+                        <div class="group relative h-[600px] overflow-hidden animate-enter delay-200">
+                            <div class="reveal-container h-full">
+                                <div class="reveal-mask"></div>
+                                <img src="https://file.felo.ai/images/s/2j7VtVFyOU.png" class="w-full h-full object-cover" alt="Hoodies">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="absolute bottom-8 left-8">
+                                <h3 class="text-4xl bebas mb-2">HOODIES</h3>
+                                <p class="text-white/60 mb-6 max-w-[200px]">Premium fleece designed for comfort and resilience.</p>
+                                <button onclick="navigateTo('shop')" class="bebas text-lg gold-text hover:translate-x-2 transition-transform inline-flex items-center gap-2">VIEW RANGE <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></button>
+                            </div>
+                        </div>
+                        <!-- Accessories -->
+                        <div class="group relative h-[600px] overflow-hidden animate-enter delay-300">
+                            <div class="reveal-container h-full">
+                                <div class="reveal-mask"></div>
+                                <img src="https://file.felo.ai/images/s/39jwyfFW1W.png" class="w-full h-full object-cover" alt="Accessories">
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="absolute bottom-8 left-8">
+                                <h3 class="text-4xl bebas mb-2">ACCESSORIES</h3>
+                                <p class="text-white/60 mb-6 max-w-[200px]">From snapbacks to phone cases, complete the look.</p>
+                                <button onclick="navigateTo('shop')" class="bebas text-lg gold-text hover:translate-x-2 transition-transform inline-flex items-center gap-2">VIEW RANGE <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter Promo (Experience Archetype: The Stage) -->
+            <section class="relative py-32 px-6 overflow-hidden bg-black text-center">
+                <div class="absolute inset-0 z-0 opacity-20 bg-[url('https://file.felo.ai/images/s/56mCZfEuw4.webp')] bg-cover bg-fixed grayscale"></div>
+                <div class="relative z-10 max-w-2xl mx-auto">
+                    <h2 class="section-headline mb-6 animate-enter">JOIN THE MOVEMENT</h2>
+                    <p class="text-lg text-white/70 mb-10 animate-enter delay-100">Enter your email to receive exclusive drops, brand updates, and 10% off your first order.</p>
+                    <form onsubmit="handleNewsletter(event)" class="flex flex-col sm:flex-row gap-4 animate-enter delay-200">
+                        <input type="email" placeholder="YOUR EMAIL ADDRESS" required class="flex-grow bg-white/5 border border-white/20 px-6 py-4 focus:outline-none focus:border-[#f5c518] transition-colors bebas text-xl">
+                        <button type="submit" class="cta-button">JOIN ELITE</button>
+                    </form>
+                    <p class="mt-6 text-xs bebas tracking-widest text-white/40">NO SPAM. ONLY HIGH-VALUE UPDATES. UNSUBSCRIBE ANYTIME.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Shop Page -->
+        <div id="page-shop" class="page-content hidden pt-32 pb-24 px-6 bg-[#0a0a0a]">
+            <div class="max-w-[1280px] mx-auto">
+                <header class="mb-16 text-center">
+                    <h1 class="section-headline mb-4">THE FORGE CATALOG</h1>
+                    <p class="text-white/60 bebas tracking-widest">🔗 PRODUCTS ARE POWERED BY PRINTIFY – SYNC YOUR CATALOG IN SETTINGS</p>
+                </header>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-6 mb-16 bebas text-xl">
+                    <button onclick="filterProducts('All')" class="filter-btn gold-text border-b-2 border-[#f5c518] pb-1">ALL</button>
+                    <button onclick="filterProducts('T-Shirts')" class="filter-btn text-white/60 hover:text-white transition-colors pb-1">T-SHIRTS</button>
+                    <button onclick="filterProducts('Hoodies')" class="filter-btn text-white/60 hover:text-white transition-colors pb-1">HOODIES</button>
+                    <button onclick="filterProducts('Hats')" class="filter-btn text-white/60 hover:text-white transition-colors pb-1">HATS</button>
+                    <button onclick="filterProducts('Accessories')" class="filter-btn text-white/60 hover:text-white transition-colors pb-1">ACCESSORIES</button>
+                </div>
+
+                <!-- Product Grid (Hard Constraint) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="product-grid">
+                    <!-- Products will be injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="page-about" class="page-content hidden pt-32 pb-24 px-6 bg-[#0a0a0a]">
+            <div class="max-w-[1280px] mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
+                    <div class="animate-enter">
+                        <h1 class="section-headline mb-8">THE APEX ETHOS:<br><span class="gold-text">FORGED TO RISE</span></h1>
+                        <div class="space-y-6 text-lg text-white/70 leading-relaxed">
+                            <p>We are not built for those chasing trends. We are built for those carrying standards. Apexion is a declaration for the ones who refuse to drift, fold, or quit when life demands more.</p>
+                            <p>Our garments are not just clothing; they are battle standards worn by those who fight for what matters: family, integrity, discipline, and purpose.</p>
+                        </div>
+                    </div>
+                    <div class="reveal-container animate-enter delay-200">
+                        <div class="reveal-mask"></div>
+                        <img src="https://file.felo.ai/images/s/56mCZfEuw4.webp" alt="Ethos" class="w-full h-auto">
+                    </div>
+                </div>
+
+                <!-- Values Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="apex-molten-glow p-10 animate-enter delay-100">
+                        <h3 class="text-3xl bebas gold-text mb-4">TRUTH OVER COMFORT</h3>
+                        <p class="text-white/60">We face hard truths to become sharper. For the disciplined who choose reality over delusion.</p>
+                    </div>
+                    <div class="apex-molten-glow p-10 animate-enter delay-200">
+                        <h3 class="text-3xl bebas gold-text mb-4">CONVICTION OVER COMPROMISE</h3>
+                        <p class="text-white/60">Holding the line on family, integrity, and purpose. For the principled who stand firm.</p>
+                    </div>
+                    <div class="apex-molten-glow p-10 animate-enter delay-300">
+                        <h3 class="text-3xl bebas gold-text mb-4">FAITH OVER FEAR</h3>
+                        <p class="text-white/60">Choosing to move forward with grit and resolve. For the resilient who climb regardless of height.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div id="page-contact" class="page-content hidden pt-32 pb-24 px-6 bg-[#0a0a0a]">
+            <div class="max-w-[800px] mx-auto">
+                <header class="text-center mb-16 animate-enter">
+                    <h1 class="section-headline mb-4">REACH THE APEX</h1>
+                    <p class="text-white/60">Questions about your order or our ethos? Drop a transmission below.</p>
+                </header>
+                <form onsubmit="handleContact(event)" class="space-y-8 animate-enter delay-200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-2">
+                            <label class="bebas text-xl gold-text">NAME</label>
+                            <input type="text" required class="w-full bg-white/5 border border-white/20 px-6 py-4 focus:outline-none focus:border-[#f5c518] transition-colors text-white">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="bebas text-xl gold-text">EMAIL</label>
+                            <input type="email" required class="w-full bg-white/5 border border-white/20 px-6 py-4 focus:outline-none focus:border-[#f5c518] transition-colors text-white">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="bebas text-xl gold-text">MESSAGE</label>
+                        <textarea rows="6" required class="w-full bg-white/5 border border-white/20 px-6 py-4 focus:outline-none focus:border-[#f5c518] transition-colors text-white"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button w-full justify-center">SEND TRANSMISSION</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cart Drawer -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/80 z-[60] hidden opacity-0 transition-opacity duration-300" onclick="toggleCart()"></div>
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-[#0a0a0a] z-[70] shadow-2xl p-8 flex flex-col">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-4xl bebas">YOUR LOADOUT</h2>
+            <button onclick="toggleCart()" class="text-white/60 hover:text-white"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        </div>
+        <div id="cart-items" class="flex-grow overflow-y-auto space-y-6 mb-8">
+            <!-- Items injected via JS -->
+            <p class="text-white/40 bebas text-center py-20">LOADOUT EMPTY. VISIT THE SHOP.</p>
+        </div>
+        <div class="border-t border-white/10 pt-8 space-y-4">
+            <div class="flex justify-between text-2xl bebas">
+                <span>TOTAL</span>
+                <span id="cart-total" class="gold-text">$0.00</span>
+            </div>
+            <button onclick="checkout()" class="cta-button w-full justify-center text-xl py-6">CHECKOUT VIA PRINTIFY</button>
+        </div>
+    </div>
+
+    <!-- Printify Integration Modal -->
+    <div id="printify-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="togglePrintify()"></div>
+        <div class="relative w-full max-w-2xl apex-molten-glow p-12 bg-obsidian">
+            <h2 class="text-4xl bebas mb-4">⚙️ CONNECT PRINTIFY ENGINE</h2>
+            <p class="text-white/60 mb-8">Sync your custom Apexion catalog directly to your Printify account.</p>
+            
+            <div class="space-y-8 mb-10">
+                <div class="flex gap-6">
+                    <div class="w-10 h-10 rounded-full border border-[#f5c518] flex items-center justify-center bebas text-[#f5c518] flex-shrink-0">1</div>
+                    <div>
+                        <h4 class="bebas text-xl mb-1">GENERATE API KEY</h4>
+                        <p class="text-sm text-white/40">Go to My Profile → Connections and click "Generate" under Personal Access Tokens.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="w-10 h-10 rounded-full border border-[#f5c518] flex items-center justify-center bebas text-[#f5c518] flex-shrink-0">2</div>
+                    <div class="flex-grow">
+                        <h4 class="bebas text-xl mb-2">INPUT TOKEN</h4>
+                        <input type="password" id="printify-key" placeholder="PASTE YOUR API KEY HERE" class="w-full bg-white/5 border border-white/20 px-4 py-3 focus:outline-none focus:border-[#f5c518] transition-colors text-white">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="savePrintify()" class="cta-button flex-grow justify-center">SAVE & CONNECT</button>
+                <a href="https://printify.com/app/dashboard" target="_blank" class="bebas text-lg px-8 py-4 border border-white/20 hover:bg-white/10 transition-colors flex items-center justify-center">OPEN DASHBOARD</a>
+            </div>
+
+            <div class="mt-8 flex items-center gap-3">
+                <div id="status-light" class="w-3 h-3 rounded-full bg-red-500"></div>
+                <span id="status-text" class="bebas text-sm tracking-widest text-white/40">NOT CONNECTED</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Connect Button -->
+    <button onclick="togglePrintify()" class="fixed bottom-8 right-8 z-[50] w-14 h-14 bg-[#f5c518] text-[#0a0a0a] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+    </button>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 bg-[#050505] border-t border-white/5">
+        <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="space-y-6">
+                <h2 class="bebas text-3xl gold-text">APEXION</h2>
+                <p class="text-white/40 text-sm leading-relaxed">Streetwear as a battle standard. Forged in shadows, worn by the resolute. Powered by Printify global fulfillment.</p>
+            </div>
+            <div>
+                <h4 class="bebas text-xl mb-6">QUICK LINKS</h4>
+                <ul class="space-y-4 text-white/60 text-sm bebas tracking-widest">
+                    <li><a href="#" class="hover:text-[#f5c518] transition-colors" onclick="navigateTo('home')">Home</a></li>
+                    <li><a href="#" class="hover:text-[#f5c518] transition-colors" onclick="navigateTo('shop')">Shop</a></li>
+                    <li><a href="#" class="hover:text-[#f5c518] transition-colors" onclick="navigateTo('about')">About Us</a></li>
+                    <li><a href="#" class="hover:text-[#f5c518] transition-colors" onclick="navigateTo('contact')">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="bebas text-xl mb-6">COLLECTIONS</h4>
+                <ul class="space-y-4 text-white/60 text-sm bebas tracking-widest">
+                    <li><a href="#" class="hover:text-[#f5c518] transition-colors" onclick="navigateTo('shop')">T-Shirts</a></li>
+                    <li><a href="#" class="hover:text-[#f5c518] transition-colors" onclick="navigateTo('shop')">Hoodies</a></li>
+                    <li><a href="#" class="hover:text-[#f5c518] transition-colors" onclick="navigateTo('shop')">Hats</a></li>
+                    <li><a href="#" class="hover:text-[#f5c518] transition-colors" onclick="navigateTo('shop')">Accessories</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="bebas text-xl mb-6">SOCIAL</h4>
+                <div class="flex gap-6">
+                    <a href="#" class="text-white/40 hover:text-[#f5c518] transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+                    <a href="#" class="text-white/40 hover:text-[#f5c518] transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[1280px] mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-white/20 text-xs bebas tracking-widest">© <span id="copyright-year"></span> APEXION CLOTHING. ALL RIGHTS RESERVED.</p>
+            <div class="flex gap-8 text-white/20 text-xs bebas tracking-widest">
+                <a href="#" class="hover:text-white transition-colors">PRIVACY POLICY</a>
+                <a href="#" class="hover:text-white transition-colors">TERMS OF SERVICE</a>
+                <a href="#" class="hover:text-white transition-colors">SHIPPING INFO</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Core Data & State ---
+        const products = [
+            { id: 1, name: "Classic Black Tee", price: 29.99, category: "T-Shirts", badge: "BESTSELLER", image: "https://placehold.co/400x500/0a0a0a/f5c518?text=Classic+Black+Tee" },
+            { id: 2, name: "Gold Logo Hoodie", price: 54.99, category: "Hoodies", badge: "NEW", image: "https://placehold.co/400x500/0a0a0a/f5c518?text=Gold+Logo+Hoodie" },
+            { id: 3, name: "Apexion Snapback", price: 24.99, category: "Hats", badge: "", image: "https://placehold.co/400x500/0a0a0a/f5c518?text=Apexion+Snapback" },
+            { id: 4, name: "Premium White Tee", price: 29.99, category: "T-Shirts", badge: "", image: "https://placehold.co/400x500/ffffff/0a0a0a?text=Premium+White+Tee" },
+            { id: 5, name: "Oversized Hoodie", price: 59.99, category: "Hoodies", badge: "NEW", image: "https://placehold.co/400x500/1a1a1a/f5c518?text=Oversized+Hoodie" },
+            { id: 6, name: "Embroidered Cap", price: 22.99, category: "Hats", badge: "", image: "https://placehold.co/400x500/0a0a0a/f5c518?text=Embroidered+Cap" },
+            { id: 7, name: "Tote Bag", price: 18.99, category: "Accessories", badge: "", image: "https://placehold.co/400x500/1a1a1a/ffffff?text=Tote+Bag" },
+            { id: 8, name: "Phone Case", price: 16.99, category: "Accessories", badge: "", image: "https://placehold.co/400x500/0a0a0a/f5c518?text=Phone+Case" }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('apexion_cart')) || [];
+        
+        // --- Navigation ---
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            const activePage = document.getElementById('page-' + pageId);
+            activePage.classList.remove('hidden');
+            window.scrollTo(0, 0);
+            
+            if (pageId === 'shop') renderProducts('All');
+            
+            // Re-trigger animations
+            setTimeout(() => {
+                observeElements();
+            }, 100);
+
+            // Handle mobile menu close
+            document.querySelector('.md:hidden svg')?.classList.remove('hidden');
+        }
+
+        // --- Cart Logic ---
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const overlay = document.getElementById('cart-overlay');
+            drawer.classList.toggle('open');
+            if (drawer.classList.contains('open')) {
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+                renderCart();
+            } else {
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({...product, quantity: 1});
+            }
+            updateCart();
+            toggleCart();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+            renderCart();
+        }
+
+        function updateQuantity(productId, delta) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCart();
+                    renderCart();
+                }
+            }
+        }
+
+        function updateCart() {
+            localStorage.setItem('apexion_cart', JSON.stringify(cart));
+            const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+            document.getElementById('cart-count').textContent = count;
+            const total = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            document.getElementById('cart-total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="text-white/40 bebas text-center py-20">LOADOUT EMPTY. VISIT THE SHOP.</p>';
+                return;
+            }
+            container.innerHTML = cart.map(item => `
+                <div class="flex gap-4 items-center animate-enter is-visible">
+                    <img src="${item.image}" class="w-20 h-24 object-cover bg-obsidian" alt="${item.name}">
+                    <div class="flex-grow">
+                        <h4 class="bebas text-lg">${item.name}</h4>
+                        <p class="text-[#f5c518] bebas">$${item.price.toFixed(2)}</p>
+                        <div class="flex items-center gap-4 mt-2">
+                            <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 border border-white/20 flex items-center justify-center hover:bg-white/10">-</button>
+                            <span class="bebas">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 border border-white/20 flex items-center justify-center hover:bg-white/10">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})" class="text-white/20 hover:text-red-500"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
+                </div>
+            `).join('');
+        }
+
+        function checkout() {
+            alert("Redirecting to Printify checkout... Connection established.");
+        }
+
+        // --- Shop Logic ---
+        function renderProducts(category) {
+            const grid = document.getElementById('product-grid');
+            const filtered = category === 'All' ? products : products.filter(p => p.category === category);
+            
+            grid.innerHTML = filtered.map((p, index) => `
+                <div class="apex-molten-glow p-4 animate-enter" style="transition-delay: ${index * 100}ms">
+                    <div class="relative overflow-hidden aspect-[4/5] bg-black mb-6 reveal-container">
+                        <div class="reveal-mask"></div>
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover">
+                        ${p.badge ? `<span class="absolute top-4 left-4 bg-[#f5c518] text-[#0a0a0a] bebas px-3 py-1 text-sm z-20">${p.badge}</span>` : ''}
+                    </div>
+                    <h3 class="bebas text-2xl mb-1">${p.name}</h3>
+                    <p class="text-white/40 text-sm bebas mb-4">${p.category}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="bebas text-2xl gold-text">$${p.price.toFixed(2)}</span>
+                        <button onclick="addToCart(${p.id})" class="w-10 h-10 bg-[#f5c518] text-[#0a0a0a] flex items-center justify-center hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            setTimeout(() => {
+                grid.querySelectorAll('.animate-enter').forEach(el => el.classList.add('is-visible'));
+                grid.querySelectorAll('.reveal-container').forEach(el => el.classList.add('is-visible'));
+            }, 50);
+        }
+
+        function filterProducts(cat) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('gold-text', 'border-b-2', 'border-[#f5c518]');
+                btn.classList.add('text-white/60');
+                if (btn.textContent === cat.toUpperCase()) {
+                    btn.classList.add('gold-text', 'border-b-2', 'border-[#f5c518]');
+                    btn.classList.remove('text-white/60');
+                }
+            });
+            renderProducts(cat);
+        }
+
+        // --- Printify Logic ---
+        function togglePrintify() {
+            const modal = document.getElementById('printify-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                modal.classList.add('flex');
+            }
+        }
+
+        function savePrintify() {
+            const key = document.getElementById('printify-key').value;
+            if (key.length > 10) {
+                document.getElementById('status-light').classList.remove('bg-red-500');
+                document.getElementById('status-light').classList.add('bg-green-500');
+                document.getElementById('status-text').textContent = "CONNECTED - APEXION ENGINE ACTIVE";
+                document.getElementById('status-text').classList.remove('text-white/40');
+                document.getElementById('status-text').classList.add('text-green-500');
+                setTimeout(() => togglePrintify(), 1500);
+            } else {
+                alert("Please enter a valid Printify API Key.");
+            }
+        }
+
+        // --- Animations & Observer ---
+        function observeElements() {
+            const observerOptions = { threshold: 0.15 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-enter, .reveal-container').forEach(el => observer.observe(el));
+        }
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const parallaxEls = document.querySelectorAll('[data-parallax]');
+            parallaxEls.forEach(el => {
+                const speed = el.getAttribute('data-parallax');
+                const yPos = -(window.pageYOffset * speed);
+                el.style.transform = `translateY(${yPos}px)`;
+            });
+
+            // Navbar scroll effect
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/90', 'backdrop-blur-md', 'border-b', 'border-white/5');
+            } else {
+                nav.classList.remove('bg-black/90', 'backdrop-blur-md', 'border-b', 'border-white/5');
+            }
+        });
+
+        // --- Lifecycle ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+            updateCart();
+            observeElements();
+
+            // Hero Word Reveal Trigger
+            setTimeout(() => {
+                document.querySelector('.hero-text-animate').classList.add('is-visible');
+            }, 300);
+        });
+
+        // Forms
+        function handleNewsletter(e) {
+            e.preventDefault();
+            alert("WELCOME TO THE MOVEMENT. CHECK YOUR INBOX FOR THE 10% CODE.");
+            e.target.reset();
+        }
+
+        function handleContact(e) {
+            e.preventDefault();
+            alert("TRANSMISSION RECEIVED. OUR TEAM WILL RESPOND SHORTLY.");
+            e.target.reset();
+        }
+        
+        function toggleMobileMenu() {
+            alert("Mobile Menu: Home, Shop, About, Contact (Functionality would expand here for full mobile UI)");
+        }
+    </script>
+</body>
+</html>
